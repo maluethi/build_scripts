@@ -71,16 +71,16 @@ git checkout $VERSION
 # Initialize build area.
 
 cd ${UBOONEDAQ_HOME_DIR}/build
-source ${UBOONEDAQ_HOME_DIR}/srcs/uboonedaq-datatypes/projects/ups/setup_for_development $opt
+source ${UBOONEDAQ_HOME_DIR}/srcs/uboonedaq-datatypes/projects/ups/setup_for_development $opt || exit 1
 
 # Run cmake.
 
-env CC=gcc CXX=g++ FC=gfortran cmake -DCMAKE_INSTALL_PREFIX="${UBOONEDAQ_HOME_DIR}/install" -DCMAKE_BUILD_TYPE=${CETPKG_TYPE} "${CETPKG_SOURCE}"
+env CC=gcc CXX=g++ FC=gfortran cmake -DCMAKE_INSTALL_PREFIX="${UBOONEDAQ_HOME_DIR}/install" -DCMAKE_BUILD_TYPE=${CETPKG_TYPE} "${CETPKG_SOURCE}" || exit 1
 
 # Run make
 
-make -j$ncores
-make install
+make -j$ncores || exit 1
+make install || exit 1
 
 # Make distribution tarball
 

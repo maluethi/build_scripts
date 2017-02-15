@@ -34,7 +34,7 @@ fi
 # Local larsoft setup
 echo "Using product directory $LOCAL_PRODUCTS"
 source $LOCAL_PRODUCTS/setup || exit 1
-source $LOCAL_PRODUCTS/setup_uboone.sh
+source $LOCAL_PRODUCTS/setup_uboone.sh || exit 1
 
 # We use the machines git, otherwise set it up here. 
 

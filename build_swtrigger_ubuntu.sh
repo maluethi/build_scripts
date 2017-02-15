@@ -19,7 +19,7 @@ echo "workspace: $WORKSPACE"
 echo "local larsoft products: $LOCAL_PRODUCTS"
 
 # Setting up the local installation
-source setup_machine.sh
+source setup_machine.sh || exit 1
 
 # Other required setups.
 

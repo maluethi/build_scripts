@@ -133,14 +133,8 @@ curl --fail --silent --location --insecure http://scisoft.fnal.gov/scisoft/bundl
 # Special handling of noifdh builds goes here.
 
 if echo $QUAL | grep -q noifdh; then
-
-  else
-
     # Otherwise (for slf builds), delete the manifest entirely.
-
     rm -f $manifest
-
-  fi
 fi
 
 # Save artifacts.

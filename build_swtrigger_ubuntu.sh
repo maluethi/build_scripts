@@ -7,7 +7,7 @@
 # Purpose: Build debug and prof flavors of swtrigger on Jenkins 
 #          on Ubuntu. Heaviliy based on build_swtrigger.sh
 #
-# Created:  15-February 2017  M.Luethi
+# Created:  15.February 2017  Matthias Luethi
 #
 # 
 #------------------------------------------------------------------

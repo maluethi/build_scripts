@@ -19,7 +19,7 @@ echo "workspace: $WORKSPACE"
 echo "local larsoft products: $LOCAL_PRODUCTS"
 
 # Setting up the local installation
-source setup_ubuntu.sh || exit 1
+source $BUILD_SCRIPTS/setup_ubuntu.sh || exit 1
 
 # Other required setups.
 
@@ -119,7 +119,7 @@ cp -r swtrigger $LOCAL_PRODUCTS
 mv ${SWTRIGGER_HOME_DIR}/${tarballname}  $WORKSPACE/copyBack/ || exit 1
 ls -l $WORKSPACE/copyBack/
 cd $WORKSPACE || exit 1
-#rm -rf $WORKSPACE/temp || exit 1
+rm -rf $WORKSPACE/temp || exit 1
 set +x
 
 exit 0

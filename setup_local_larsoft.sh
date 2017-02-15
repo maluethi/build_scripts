@@ -20,6 +20,6 @@ chmod +x pullProducts
 
 LARSOFT_QUAL_MINUS=`echo ${LARSOFT_QUAL} |  sed -e 's/:/-/g'`
 ./pullProducts -r $LOCAL_PRODUCTS u14 larsoft-$UBOONE $LARSOFT_QUAL_MINUS prof || exit 1
-#./pullProducts -r $LOCAL_PRODUCTS u14 larsoft-$UBOONE $LARSOFT_QUAL_MINUS debug || exit 1
+./pullProducts -r $LOCAL_PRODUCTS u14 larsoft-$UBOONE $LARSOFT_QUAL_MINUS debug || exit 1
 
 cd -

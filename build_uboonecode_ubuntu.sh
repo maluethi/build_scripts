@@ -2,7 +2,7 @@
 
 #------------------------------------------------------------------
 #
-# Name: build_swtrigger_uboone.sh
+# Name: build_uboonecode_ubuntu.sh
 #
 # Purpose: Build debug and prof flavors of uboonecode on Jenkins 
 #          on Ubuntu. Heaviliy based on buildUboone.sh. Not that
@@ -134,13 +134,6 @@ curl --fail --silent --location --insecure http://scisoft.fnal.gov/scisoft/bundl
 
 if echo $QUAL | grep -q noifdh; then
 
-  if uname | grep -q Darwin; then
-
-    # If this is a macos build, then rename the manifest to remove noifdh qualifier in the name
-
-    noifdh_manifest=`echo $manifest | sed 's/-noifdh//'`
-    mv $manifest $noifdh_manifest
-
   else
 
     # Otherwise (for slf builds), delete the manifest entirely.
@@ -160,7 +153,11 @@ fi
 cp $MRB_BUILDDIR/uboonecode/releaseDB/*.html $WORKSPACE/copyBack/
 ls -l $WORKSPACE/copyBack/
 cd $WORKSPACE || exit 1
-#rm -rf $WORKSPACE/temp || exit 1
+rm -rf $WORKSPACE/temp || exit 1
 set +x
+
+# install uboonecode / ubutil
+tar -xf $WORKSPACE/copyBack/uboonecode-* -C $LOCAL_PRODUCTS || exit 1
+tar -xf $WORKSPACE/copyBack/ubutil-* -C $LOCAL_PRODUCTS || exit 1
 
 exit 0

@@ -21,7 +21,7 @@ echo "workspace: $WORKSPACE"
 
 echo "local larsoft products: $LOCAL_PRODUCTS"
 
-source $setup_ubuntu.sh || exit 1
+source setup_ubuntu.sh || exit 1
 
 setup mrb
 

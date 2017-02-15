@@ -1,4 +1,15 @@
-######################### Setup the machine ###################################
+#!/bin/bash
+
+#------------------------------------------------------------------
+#
+# Name: setup_ubuntu.sh
+#
+# Purpose: Setup the local larsoft installation of the Ubuntu 
+#          machine. Should be invoked before any builds happen.
+#
+# Created:  15.February 2017, Matthias Luethi
+#
+#------------------------------------------------------------------
 
 # Get number of cores to use.
 
@@ -25,6 +36,5 @@ echo "Using product directory $LOCAL_PRODUCTS"
 source $LOCAL_PRODUCTS/setup || exit 1
 source $LOCAL_PRODUCTS/setup_uboone.sh
 
-# We use the machines git 
+# We use the machines git, otherwise set it up here. 
 
-###############################################################################

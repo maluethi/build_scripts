@@ -19,6 +19,8 @@ echo "local larsoft products: $LOCAL_PRODUCTS"
 
 source $BUILD_SCRIPTS/setup_ubuntu.sh || exit 1
 
+# the above command sets up a way to new cetbuiltools version
+unsetup cetbuildtools
 
 # Interpret build type.
 
@@ -91,7 +93,7 @@ echo "Making ${tarballname}"
 tar cjf ${UBOONEDAQ_HOME_DIR}/${tarballname} uboonedaq_datatypes
 
 # install to local installation
-echo "Installing swtrigger $VERSION to $LOCAL_PRODUCTS"
+echo "Installing uboonedaq_datatypes $VERSION to $LOCAL_PRODUCTS"
 cp -r uboonedaq_datatypes $LOCAL_PRODUCTS
 
 # Save artifacts.

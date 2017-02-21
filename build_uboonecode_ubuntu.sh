@@ -59,8 +59,8 @@ cvmfs_config probe
 ls /cvmfs/uboone.opensciencegrid.org/products || exit 1
 
 if [ ! -d "$LOCAL_PRODUCTS/uboone_data/$uboone_data_version" ]; then
-	rsync -azh /cvmfs/uboone.opensciencegrid.org/products/uboone_data/$uboone_data_version $LOCAL_PRODUCTS
-	rsync -azh /cvmfs/uboone.opensciencegrid.org/products/uboone_data/$uboone_data_version.version $LOCAL_PRODUCTS
+	rsync -azh /cvmfs/uboone.opensciencegrid.org/products/uboone_data/$uboone_data_version $LOCAL_PRODUCTS/uboone_data/ || exit 1
+	rsync -azh /cvmfs/uboone.opensciencegrid.org/products/uboone_data/"$uboone_data_version.version" $LOCAL_PRODUCTS/uboone_data/ || exit 1
 fi
 # This is the way to go if cvmfs is not available:
 #cd $LOCAL_PRODUCTS

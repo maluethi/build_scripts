@@ -41,7 +41,6 @@ mrb newDev  -v $UBOONE -q $QUAL:$BUILDTYPE || exit 1
 set +x
 source localProducts*/setup || exit 1
 
-set -x
 cd $MRB_SOURCE  || exit 1
 # make sure we get a read-only copy
 mrb g -r -t $UBOONE uboonecode || exit 1
@@ -54,13 +53,22 @@ uboone_data_version=`grep uboone_data $MRB_SOURCE/uboonecode/ups/product_deps | 
 uboone_data_dot_version=`echo ${uboone_data_version} | sed -e 's/_/./g' | sed -e 's/^v//'`
 uboone_data_tar=uboone_data-${uboone_data_dot_version}-noarch.tar.bz2
 
-cd $LOCAL_PRODUCTS
-mkdir -p archive
-cd archive
+# try to get the uboone_data from cvmfs:
+echo "Copying uboone_data from cvmfs"
+cvmfs_config probe
+ls /cvmfs/uboone.opensciencegrid.org/products || exit 1
 
-echo "Downloading uboone_data: $uboone_data_tar"
-wget -nc http://scisoft.fnal.gov/scisoft/packages/uboone_data/$uboone_data_version/$uboone_data_tar || exit 1
-tar -xf $uboone_data_tar -C $LOCAL_PRODUCTS --skip-old-files || exit 1
+if [ ! -d "$LOCAL_PRODUCTS/uboone_data/$uboone_data_version" ]; then
+	rsync -azh /cvmfs/uboone.opensciencegrid.org/products/uboone_data/$uboone_data_version $LOCAL_PRODUCTS
+	rsync -azh /cvmfs/uboone.opensciencegrid.org/products/uboone_data/$uboone_data_version.version $LOCAL_PRODUCTS
+fi
+# This is the way to go if cvmfs is not available:
+#cd $LOCAL_PRODUCTS
+#mkdir -p archive
+#cd archive
+#echo "Downloading uboone_data: $uboone_data_tar"
+#wget -nc http://scisoft.fnal.gov/scisoft/packages/uboone_data/$uboone_data_version/$uboone_data_tar || exit 1
+#tar -xf $uboone_data_tar -C $LOCAL_PRODUCTS --skip-old-files || exit 1
 
 cd $MRB_SOURCE || exit 1
 
